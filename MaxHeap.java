@@ -1,9 +1,7 @@
 /******************************************************************************
-
                             Online Java Compiler.
                 Code, Compile, Run and Debug java program online.
 Write your code in this editor and press "Run" button to execute it.
-
 *******************************************************************************/
 import java.util.*;
 import java.io.*;
@@ -72,7 +70,7 @@ class Heap
 	
 	public void increaseKeyTo(int index, int val)
 	{
-	    if(index < 0 || index >= this.heap_size)
+	    if(index < 0 || index >= this.heap_size || this.A[index] >= val)
 	        return;
 	        
 	    this.A[index] = val;
@@ -84,6 +82,26 @@ class Heap
 	        this.A[(index-1)/2] = temp;
 	        index = (index-1)/2;
 	    }
+	}
+	
+	public void insert(int val)
+	{   
+	    try
+	    {
+	        A[this.heap_size] = -1000;
+	    }
+	    catch(ArrayIndexOutOfBoundsException e)
+	    {
+	        int[] B = new int[2*this.heap_size];
+	        for(int i = 0 ;i<this.heap_size;i++)
+	            B[i] = this.A[i];
+	        
+	        this.A = B;    
+	        A[this.heap_size] = -1000;
+	    }
+	    
+	    this.heap_size++;
+	    increaseKeyTo(this.heap_size-1, val);
 	}
     
 }
@@ -105,10 +123,11 @@ public class Main
 		//heap.printHeap();
 		
 		System.out.println();
-		
-		heapSort(A, n);
-		for(int i : A)
-		    System.out.print(i + " ");
+		heap.insert(100);
+		heap.printHeap();
+		//heapSort(A, n);
+// 		for(int i : A)
+// 		    System.out.print(i + " ");
 		
 	}
 	
