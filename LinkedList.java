@@ -71,6 +71,29 @@ class LinkedList
             temp.next = node;
         }
     }
+	
+    public void delete(int data)
+    {
+        if(head == null)
+            return;
+        if(head.data == data)
+        { 
+            Node temp = head;
+            head = head.next; 
+            temp.next = null;
+            return;
+        }
+        
+        Node temp = head;
+        while(temp.next != null && temp.next.data != data)
+            temp = temp.next;
+            
+        if(temp.next == null) return;
+        
+        temp.next = temp.next.next;
+        
+        return;
+    }
     
     public boolean find(int key)
     {
