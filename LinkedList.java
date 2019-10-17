@@ -94,6 +94,29 @@ class LinkedList
         
         return;
     }
+	
+    public void deleteAt(int index)
+    {
+        if(head == null) return;
+        if(index < 1) return;
+        if(index == 1)
+        {
+            head = head.next;
+            return;
+        }
+        
+        Node temp = head;
+        int i = 1;
+        while(temp.next!=null && i<index-1)
+        {
+            temp = temp.next;
+            i++;
+        }
+        
+        if(temp.next == null) return;
+        temp.next = temp.next.next;
+        return;
+    }
     
     public boolean find(int key)
     {
