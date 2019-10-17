@@ -35,6 +35,28 @@ public class Main
 		System.out.println(list.isCircular());
 		
 	}
+	
+	static public LinkedList Merge(LinkedList l1, LinkedList l2)
+	    {
+		if(l1.head == null) return l2;
+		if(l2.head == null) return l1;
+
+		LinkedList result = new LinkedList();
+		if(l1.head.data < l2.head.data)
+		{
+		    result.head = l1.head;
+		    l1.head = l1.head.next;
+		    result.head.next = Merge(l1, l2).head;
+		}
+		else
+		{
+		    result.head = l2.head;
+		    l2.head = l2.head.next;
+		    result.head.next = Merge(l1, l2).head;
+		}
+		return result;
+	    }
+	
 }
 
 class LinkedList
@@ -192,7 +214,31 @@ class LinkedList
             temp2 = temp2.next;
         temp2.next = temp;
         
-    }	
+    }
+	
+	
+	
+    public LinkedList Merge(LinkedList l)
+    {
+        if(this.head == null) return l;
+        if(l.head == null) return this;
+        
+        LinkedList result = new LinkedList();
+        if(this.head.data < l.head.data)
+        {
+            result.head = this.head;
+            this.head = this.head.next;
+            result.head.next = this.Merge(l).head;
+        }
+        else
+        {
+            result.head = l.head;
+            l.head = l.head.next;
+            result.head.next = this.Merge(l).head;
+        }
+        return result;
+    }
+	
     
     public boolean isCircular()
     {
