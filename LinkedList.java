@@ -218,6 +218,30 @@ class LinkedList
 	
 	
 	
+     public Node reverseInPairs()
+    {
+        if(this.head == null)
+            return this.head;
+            
+        if(this.head.next == null)
+            return this.head;
+            
+        Node rest = this.head.next.next;
+        
+        this.head.next.next = null;
+        Node next = this.head.next;
+        this.head.next = null;
+        next.next = this.head;
+        this.head = next;
+        
+        LinkedList restList = new LinkedList();
+        restList.head = rest;
+        this.head.next.next = restList.reverseInPairs();
+        return this.head;
+    }	
+	
+	
+	
     public LinkedList Merge(LinkedList l)
     {
         if(this.head == null) return l;
