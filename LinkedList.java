@@ -241,6 +241,42 @@ class LinkedList
     }	
 	
 	
+    public Node reverseInK_airs(int k)
+    {
+        if(this.head == null)
+            return this.head;
+            
+        if(this.head.next == null)
+            return this.head;
+            
+        int i = 0;
+        Node rest;
+        Node temp = this.head;
+        while(i<k-1 && temp != null)
+        {
+            temp = temp.next;
+            i++;
+        }
+        if(temp == null)
+        {
+            rest = null;
+        }
+        else
+        {
+            rest = temp.next;
+            temp.next = null;
+        }
+        
+        LinkedList restList = new LinkedList();
+        restList.head = rest;
+        this.reverse();
+        temp = this.head;
+        while(temp.next != null)
+            temp = temp.next;
+        temp.next = restList.reverseInK_airs(k);
+        return this.head;
+    }
+	
 	
     public LinkedList Merge(LinkedList l)
     {
