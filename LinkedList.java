@@ -147,6 +147,21 @@ class LinkedList
         this.head = prev;
     }
     
+    public void reverseRec()
+    {
+        if(head == null || head.next == null) return;
+        
+        Node temp = head;
+        head = head.next;
+        temp.next = null;
+        this.reverseRec();
+        
+        Node temp2 = head;
+        while(temp2.next != null)
+            temp2 = temp2.next;
+        temp2.next = temp;
+        
+    }	
     
     public boolean isCircular()
     {
