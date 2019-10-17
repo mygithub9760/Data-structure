@@ -72,6 +72,37 @@ class LinkedList
         }
     }
 	
+    public void insertInSorted(int data)
+    {
+        Node node = new Node(data);
+        if(head == null)
+        {
+            head = node;
+            return;
+        }
+        if(head.data >= data)
+        {
+            node.next = head;
+            head = node;
+            return;
+        }
+        
+        Node temp = head;
+        while(temp.next != null && temp.next.data < data)
+            temp = temp.next;
+        
+        if(temp.next == null)
+        {
+            temp.next = node;
+        
+            return;
+        }
+        
+        node.next = temp.next;
+        temp.next = node;
+        return;
+    }
+	
     public void delete(int data)
     {
         if(head == null)
