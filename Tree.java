@@ -18,16 +18,17 @@ public class Main
 	    tree.insert(5);
 	    tree.insert(6);
 	    tree.insert(7);
-	    tree.insert(8);
-	    tree.insert(9);
-	    tree.insert(10);
-	    tree.insert(11);
-	    tree.insert(12);
-	    tree.insert(13);
-	    tree.insert(14);
-	    tree.insert(15);
+	   // tree.insert(8);
+	   // tree.insert(9);
+	   // tree.insert(10);
+	   // tree.insert(11);
+	   // tree.insert(12);
+	   // tree.insert(13);
+	   // tree.insert(14);
+	   // tree.insert(15);
 	    
-	    tree.rootToLeafPrint();
+	    //tree.rootToLeafPrint();
+	    System.out.println(tree.pathWithGivenSum(tree.root, 12));
 	    //tree.preorder(tree.root);
 	    //System.out.println(tree.root.left.left.data);
 	   // tree.inorder(tree.root);
@@ -119,6 +120,20 @@ class Tree
         for(int i = 0;i<list.size();i++)
             System.out.print(list.get(i).data + " ");
         System.out.println();
+    }
+    
+    
+    public boolean pathWithGivenSum(TreeNode root, int sum)
+    {
+        if(root == null && sum == 0)
+            return true;
+        if(root == null && sum != 0)
+            return false;
+        
+        sum = sum - root.data;
+        if(sum == 0) return true;
+        
+        return (pathWithGivenSum(root.left, sum) || pathWithGivenSum(root.right, sum));
     }
     
     public void inorder(TreeNode root)
