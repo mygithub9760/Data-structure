@@ -9,14 +9,30 @@ import java.util.*;
 public class Main
 {
 	public static void main(String[] args) {
-	    Tree root = new Tree();
-	    root.insert(1);
-	    root.insert(2);
-	    root.insert(3);
-	    root.insert(4);
-	    root.insert(5);
+	    Tree tree = new Tree(); 
 	    
-	    root.postOrder();
+	    tree.insert(1);
+	    tree.insert(2);
+	    tree.insert(3);
+	    tree.insert(4);
+	    tree.insert(5);
+	    tree.insert(6);
+	    tree.insert(7);
+	    tree.insert(8);
+	    tree.insert(9);
+	    tree.insert(10);
+	    tree.insert(11);
+	    tree.insert(12);
+	    tree.insert(13);
+	    tree.insert(14);
+	    tree.insert(15);
+	    
+	    tree.rootToLeafPrint();
+	    //tree.preorder(tree.root);
+	    //System.out.println(tree.root.left.left.data);
+	   // tree.inorder(tree.root);
+	   // System.out.println();
+	   // tree.postOrder();
 	}
 }
 
@@ -40,6 +56,7 @@ class Tree
     public void insert(int data)
     {
         TreeNode t = new TreeNode(data);
+        
         if(root == null)
             root = t;
         else
@@ -64,6 +81,63 @@ class Tree
                 q.offer(temp.right);
             }
             
+        }
+    }
+    
+    public void rootToLeafPrint()
+    {
+        ArrayList<TreeNode> list = new ArrayList<>();
+        rootToLeafPrintHelper(this.root, list);
+    }
+    
+    public void rootToLeafPrintHelper(TreeNode root, ArrayList<TreeNode> list)
+    {
+        if(root==null){
+            
+            System.out.println("null is running");
+            return;
+        }
+        
+        if(root.left==null && root.right == null)
+        {
+            list.add(root);
+            printList(list);
+            list.remove(root);
+            return;
+        }
+        list.add(root);
+        rootToLeafPrintHelper(root.left, list);
+        
+        rootToLeafPrintHelper(root.right, list);
+        list.remove(root);
+        
+    }
+    
+    
+    public void printList(ArrayList<TreeNode> list)
+    {
+        for(int i = 0;i<list.size();i++)
+            System.out.print(list.get(i).data + " ");
+        System.out.println();
+    }
+    
+    public void inorder(TreeNode root)
+    {
+        if(root==null)
+            return;
+        inorder(root.left);
+        System.out.print(root.data + " ");
+        inorder(root.right);
+    }
+    
+    public void preorder(TreeNode r)
+    {
+        if(r != null){
+            System.out.print(r.data + " ");
+        
+            this.preorder(r.left);
+        
+            this.preorder(r.right);
         }
     }
     
