@@ -57,7 +57,7 @@ public class Main
 	        A[0] = temp;
 	        
 	        l--;
-	        A = buildHeap(A, l);
+	        heapify(A, l, 0);
 	    }
 	    
 	    
